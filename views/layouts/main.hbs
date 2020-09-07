@@ -2,22 +2,104 @@
 <html lang="en">
 
 <head>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <style>
+        .popup {
+            margin-right: 50px;
+            position: static;
+            display: inline-block;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* The actual popup */
+        #popup .popuptext {
+            visibility: hidden;
+
+            width: 160px;
+            background-color: #2e7d32;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 100%;
+            margin-left: -50px;
+
+
+
+        }
+
+        /* Popup arrow */
+        #popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            transform: translateX(50px);
+            border-style: solid;
+            border-color: #2e7d32 transparent transparent transparent;
+        }
+
+        /* Toggle this class - hide and show the popup */
+        #popup .show {
+            visibility: visible;
+            transform: translateX(-50px);
+            margin-right: 50px;
+
+        }
+
+        #popup .hide {
+            visibility: hidden;
+
+
+        }
+
+        /* Add animation (fade in the popup) */
+        @-webkit-keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Popup container - can be anything you want */
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
         integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/style.css">
-    <title>StoryBooks</title>
+    <title>Co-matching App</title>
 </head>
 
 <body>
     {{> _header}}
     {{> _add_btn}}
-    <div class="container">
-        {{{body}}}
-    </div>
+    <div>
+        <div class="row">{{{body}}}</div>
 
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js"
         integrity="sha256-bEIQpI72w9NJuIVhTLFUF2/8uxl0u5800r8ddViuv+o=" crossorigin="anonymous"></script>
@@ -29,7 +111,21 @@
         CKEDITOR.replace('body', {
             plugins: 'wysiwygarea, toolbar, basicstyles, link'
         })
+        function myFunction() {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+        }
+
+
     </script>
+
+
+    <script>$(document).ready(function () {
+            // the " href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });</script>
+
+
 </body>
 
 </html>

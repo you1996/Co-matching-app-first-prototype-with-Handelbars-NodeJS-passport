@@ -1,38 +1,191 @@
-<h6>Dashboard</h6>
-<h3>Welcome {{name}}</h3>
-<p>Here are your stories</p>
-{{#if stories}}
-<table class="striped">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each stories}}
-        <tr>
-            <td><a href="/stories/{{_id}}">{{title}}</a></td>
-            <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
-            <td><span class="dash-status">{{status}}</span></td>
-            <td>
-                <a href="/stories/edit/{{_id}}" class="btn btn-float">
-                    <i class="fas fa-edit"></i>
-                </a>
+<style>
+    .post {
 
-                <form action="/stories/{{_id}}" method="POST" id="delete-form">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn red">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </form>
-            </td>
-        </tr>
+        height: auto;
+        margin: 10px 20px;
+        overflow: hidden;
+        padding: 10px;
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+    }
+
+    .post__username {
+        margin: 5px 0 20px 0;
+    }
+
+    .post__body {
+        margin: 10px 0;
+
+    }
+
+    .post__date {
+        color: grey;
+    }
+
+    .card-container {
+        background-color: rgb(255, 255, 255);
+        opacity: 0.8;
+        border-radius: 5px;
+
+        color: rgb(90, 141, 117);
+        margin-right: 5px;
+        position: relative;
+        margin-top: 30px;
+        width: auto;
+
+        opacity: 1;
+        text-align: center;
+        margin-left: 5px;
+    }
+
+    .card-container.row {
+        opacity: 0.4;
+        margin-bottom: 0px;
+    }
+
+    .card-image {
+        border-radius: 5px;
+    }
+
+
+
+    .round {
+        border: 1px solid #12a80c;
+        border-radius: 50%;
+        padding: 7px;
+        margin-top: 10px;
+        max-width: 150px;
+    }
+</style>
+
+
+<div class="col s12 m6 l3">
+    <div class="card-container">
+        <img class="round" src="{{profilpic}}" />
+
+        <h6> <i class="fa fa-fw fa-user"></i>{{givenName}} {{familyName}}</h6>
+
+        <h6> <i class="fa fa-fw fa-at"></i>{{email}}</h6>
+        <p>{{country}}</p>
+    </div>
+</div>
+{{#if stories}}
+
+<div class="col s12 m6 l6 ">
+    <div class="row">
+        <h3>Posts </h3>
+        {{#each stories}}
+
+        <div class="post">
+            <div class="post__user">
+                <strong class="post__username"><a
+                        style="font-family:Arial, Helvetica, sans-serif; font-size:25px; color:#4caf50"
+                        href="/stories/{{_id}}">{{title}}</a></strong><br>
+                <span class="post__date">{{formatDate createdAt 'MMMM Do YYYY, h:mm a'}}</span>
+                {{!-- <span class="dash-status">{{status}}</span> --}}
+            </div>
+            <div class="post__body">
+                <p>{{stripTags body}}</p>
+
+            </div>
+
+
+            <form action="/stories/{{_id}}" method="POST" id="delete-form">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-small right red">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </form>
+            <a href="/stories/edit/{{_id}}" class="btn btn-float btn-small green -3 right">
+                <i class="fas fa-edit "></i>
+            </a>
+        </div>
+
+
         {{/each}}
-    </tbody>
-</table>
-{{else}}
-<p>You have not created any stories</p>
-{{/if}}
+    </div>
+    {{else}}
+    <p>You have not created any post</p>
+    {{/if}}
+</div>
+<div class="col s12 m6 l3" id="style-15" style="background-color:#f9f9f9; border-left: 1px solid #12a80c; overflow: auto;
+    height:100vh">
+
+
+    {{#each  matches }}
+
+    <div class=" card-container">
+
+
+
+        <div class="row">
+            <div class="col s12 m6 l6">
+                <h6> <i class="fa fa-fw fa-user"></i></h6>
+            </div>
+            <div class="col s12 m6 l6">
+                <h5>{{this.givenName}} {{this.familyName}}</h5>
+                <a href="/stories/user/{{this._id}}"></a>
+            </div>
+
+
+
+
+        </div>
+        <form action="/message" method="POST" class="col s12">
+            <div class="row">
+                <div class="input-field">
+                    <input type="text" id="message" name="message">
+                    <label for="message">Title</label>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <input type="submit" value="Save" class="btn">
+                <a href="/dashboard" class="btn orange">Cancel</a>
+            </div>
+        </form>
+
+    </div>
+
+
+</div> {{/each}}
+<form action="/message" method="POST" class="col s12">
+    <div class="row">
+        <div class="input-field">
+            <input type="text" id="message" name="message">
+            <label for="message">Title</label>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <input type="submit" value="Save" class="btn">
+        <a href="/dashboard" class="btn orange">Cancel</a>
+    </div>
+</form>
+<script>var socket = io('http://localhost:5000');  // Server endpoint
+
+    socket.on('connect', connectUser);
+
+    socket.on('message', function (data) {
+        console.log(data);
+    });
+
+    function connectUser() {  // Called whenever a user signs in
+        var userId = ...  // Retrieve userId
+        if (!userId) return;
+        socket.emit('userConnected', userId);
+    }
+
+    function disconnectUser() {  // Called whenever a user signs out
+        var userId = ...  // Retrieve userId
+        if (!userId) return;
+        socket.emit('userDisconnected', userId);
+    }</script>

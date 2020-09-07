@@ -1,45 +1,64 @@
-const GoogleStrategy = require('passport-google-oauth20').Strategy
-const mongoose = require('mongoose')
-const User = require('../models/User')
+const LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
+const mongoose = require("mongoose");
+const User = require("../models/User");
 
 module.exports = function (passport) {
   passport.use(
-    new GoogleStrategy(
+    new LinkedInStrategy(
       {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: '/auth/google/callback',
+        clientID: process.env.LINKEDIN_CLIENT_ID,
+        clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
+        callbackURL: "/auth/linkedin/callback",
+        scope: ["r_emailaddress", "r_liteprofile", "w_member_social"],
       },
+
       async (accessToken, refreshToken, profile, done) => {
-        const newUser = {
-          googleId: profile.id,
-          displayName: profile.displayName,
-          firstName: profile.name.givenName,
-          lastName: profile.name.familyName,
-          image: profile.photos[0].value,
-        }
+        const existingUser = await User.findOne({
+          linkedinId: profile.id,
+        }); /*
+        console.log(profile);
+        const all = await User.find({}, function (err, docs) {});
+        var matching = {};
 
-        try {
-          let user = await User.findOne({ googleId: profile.id })
-
-          if (user) {
-            done(null, user)
-          } else {
-            user = await User.create(newUser)
-            done(null, user)
+        all.forEach((element) => {
+          if (element.linkedinId != profile.id) {
+            matching[element.linkedinId] = scoring.scoring(
+              existingUser.info,
+              element.info
+            );
           }
-        } catch (err) {
-          console.error(err)
+        });
+        let query = { linkedinId: profile.id };
+        User.updateOne(
+          query,
+          { $set: { matchingList: matching } },
+          { upsert: true }
+        ).then((result, err) => {
+          return "ok";
+        });*/
+
+        if (existingUser) {
+          return done(null, existingUser);
         }
+
+        const user = await new User({
+          linkedinId: profile.id,
+          givenName: profile.name.givenName,
+          familyName: profile.name.familyName,
+          email: profile.emails[0].value,
+          profilpic: profile.photos[2].value,
+          country: profile._json.firstName.preferredLocale.country,
+        }).save();
+        done(null, user);
       }
     )
-  )
+  );
 
   passport.serializeUser((user, done) => {
-    done(null, user.id)
-  })
+    done(null, user.id);
+  });
 
   passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => done(err, user))
-  })
-}
+    User.findById(id, (err, user) => done(err, user));
+  });
+};
