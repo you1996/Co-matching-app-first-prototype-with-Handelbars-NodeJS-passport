@@ -8,7 +8,7 @@
     "npm": ">=6.14.4"
   },
   "scripts": {
-    "start": "npm run dev",
+    "start": "cross-env NODE_ENV=production node app",
     "dev": "cross-env NODE_ENV=development nodemon app",
     "postinstall": "node ./scripts/post-install.js"
   },
