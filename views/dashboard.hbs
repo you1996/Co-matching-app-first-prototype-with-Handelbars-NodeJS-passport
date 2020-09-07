@@ -170,22 +170,3 @@
         <a href="/dashboard" class="btn orange">Cancel</a>
     </div>
 </form>
-<script>var socket = io('http://localhost:5000');  // Server endpoint
-
-    socket.on('connect', connectUser);
-
-    socket.on('message', function (data) {
-        console.log(data);
-    });
-
-    function connectUser() {  // Called whenever a user signs in
-        var userId = ...  // Retrieve userId
-        if (!userId) return;
-        socket.emit('userConnected', userId);
-    }
-
-    function disconnectUser() {  // Called whenever a user signs out
-        var userId = ...  // Retrieve userId
-        if (!userId) return;
-        socket.emit('userDisconnected', userId);
-    }</script>
