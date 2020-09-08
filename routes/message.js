@@ -8,7 +8,7 @@ const Message = require("../models/Message");
 router.post("/", ensureAuth, async (req, res) => {
   try {
     req.body.sender = req.user.id;
-    req.body.reciever = req.params.matches.id;
+
     console.log(req.body.sender, req.body.reciever);
     await Message.create(req.body);
     console.log("created");
