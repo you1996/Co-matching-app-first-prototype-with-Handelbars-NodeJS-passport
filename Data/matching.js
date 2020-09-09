@@ -32,9 +32,7 @@ function ContributeData(user, DataDocument) {
 function CalculSectionScore(table1, table2, poids) {
   let sectionScore = 0;
   table1.forEach((element1) => {
-    console.log(element1);
     table2.forEach((element2) => {
-      console.log(element2);
       if (element1.toUpperCase() === element2.toUpperCase()) {
         sectionScore = sectionScore + 1 * poids;
       }

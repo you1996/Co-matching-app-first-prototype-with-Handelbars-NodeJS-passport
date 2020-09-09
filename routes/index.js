@@ -22,7 +22,7 @@ router.get("/dashboard", ensureAuth, async (req, res) => {
     .sort({ createdAt: "desc" })
     .lean();
 
-  var list = Object.keys(req.user.matchingList);
+  var list = await Object.keys(req.user.matchingList);
   const run = async () => {
     for (const liste of list) {
       let user = await User.findOne({ linkedinId: liste }).lean();
