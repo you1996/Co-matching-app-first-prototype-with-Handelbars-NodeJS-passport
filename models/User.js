@@ -5,6 +5,8 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  matchingList: { type: Object },
+  informations: { type: Object },
   givenName: {
     type: String,
     required: true,
@@ -24,8 +26,6 @@ const UserSchema = new mongoose.Schema({
   profilpic: {
     type: String,
   },
-  info: Object,
-  matchingList: Array,
 });
 
 module.exports = mongoose.model("User", UserSchema);

@@ -1,4 +1,8 @@
 <style>
+    * {
+        color: rgb(90, 141, 117);
+    }
+
     .post {
 
         height: auto;
@@ -6,7 +10,7 @@
         overflow: hidden;
         padding: 10px;
         background-color: white;
-        color: black;
+        color: rgb(90, 141, 117);
         border-radius: 5px;
         -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
         -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
@@ -42,9 +46,32 @@
         margin-left: 5px;
     }
 
-    .card-container.row {
-        opacity: 0.4;
-        margin-bottom: 0px;
+    .col .s8 {
+        margin: 0px;
+    }
+
+    .col .s4 {
+        margin-top: 5px;
+    }
+
+    h5 {
+        color: rgb(90, 141, 117);
+        margin: 0px;
+        font-size: 21px;
+    }
+
+    #row {
+        height: 94px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3px;
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
     }
 
     .card-image {
@@ -61,82 +88,95 @@
         max-width: 150px;
     }
 </style>
+<div class="row">
 
+    <div class="col s12 m6 l3">
+        <div class="card-container">
 
-<div class="col s12 m6 l3">
-    <div class="card-container">
-        <img class="round" src="{{profilpic}}" />
+            <img class="round" src="{{profilpic}}" />
 
-        <h6> <i class="fa fa-fw fa-user"></i>{{givenName}} {{familyName}}</h6>
+            <h6> <i class="fa fa-fw fa-user"></i>{{givenName}} {{familyName}}</h6>
 
-        <h6> <i class="fa fa-fw fa-at"></i>{{email}}</h6>
-        <p>{{country}}</p>
-    </div>
-</div>
-{{#if stories}}
-
-<div class="col s12 m6 l6 ">
-    <div class="row">
-        <h3>Posts </h3>
-        {{#each stories}}
-
-        <div class="post">
-            <div class="post__user">
-                <strong class="post__username"><a
-                        style="font-family:Arial, Helvetica, sans-serif; font-size:25px; color:#4caf50"
-                        href="/stories/{{_id}}">{{title}}</a></strong><br>
-                <span class="post__date">{{formatDate createdAt 'MMMM Do YYYY, h:mm a'}}</span>
-                {{!-- <span class="dash-status">{{status}}</span> --}}
-            </div>
-            <div class="post__body">
-                <p>{{stripTags body}}</p>
-
-            </div>
-
-
-            <form action="/stories/{{_id}}" method="POST" id="delete-form">
-                <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="btn btn-small right red">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </form>
-            <a href="/stories/edit/{{_id}}" class="btn btn-float btn-small green -3 right">
-                <i class="fas fa-edit "></i>
-            </a>
+            <h6> <i class="fa fa-fw fa-at"></i>{{email}}</h6>
+            <p>{{country}}</p>
         </div>
-
-
-        {{/each}}
     </div>
-    {{else}}
-    <p>You have not created any post</p>
-    {{/if}}
-</div>
-<div class="col s12 m6 l3" id="style-15" style="background-color:#f9f9f9; border-left: 1px solid #12a80c; overflow: auto;
-    height:100vh">
-
-
-    {{#each  matches }}
-
-    <div class=" card-container">
-
+    <div class="col s12 m6 l6 ">
+        {{#if stories}}
 
 
         <div class="row">
-            <div class="col s12 m6 l6">
-                <h6> <i class="fa fa-fw fa-user"></i></h6>
+            <h3>Posts </h3>
+            {{#each stories}}
+
+            <div class="post">
+                <div class="post__user">
+                    <strong class="post__username"><a
+                            style="font-family:Arial, Helvetica, sans-serif; font-size:25px; color:#4caf50"
+                            href="/stories/{{_id}}">{{title}}</a></strong><br>
+                    <span class="post__date">{{formatDate createdAt 'MMMM Do YYYY, h:mm a'}}</span>
+                    {{!-- <span class="dash-status">{{status}}</span> --}}
+                </div>
+                <div class="post__body">
+                    <p>{{stripTags body}}</p>
+
+                </div>
+
+
+                <form action="/stories/{{_id}}" method="POST" id="delete-form">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-small right red">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </form>
+                <a href="/stories/edit/{{_id}}" class="btn btn-float btn-small green -3 right">
+                    <i class="fas fa-edit "></i>
+                </a>
             </div>
-            <div class="col s12 m6 l6">
-                <h5>{{this.givenName}} {{this.familyName}}</h5>
-                <a href="/stories/user/{{this._id}}"></a>
-            </div>
 
 
-
-
+            {{/each}}
         </div>
+        {{else}}
+        <p>You have not created any post</p>
+        {{/if}}
+    </div>
+    <div class="col s12 m6 l3" id="style-15" style="background-color:#f9f9f9; border-left: 1px solid #12a80c; overflow: auto;
+    height:100vh;">
+
+
+        {{#each  matches }}
+
+
+
+
+
+
+        <a href="/stories/user/{{this._id}}">
+            <div class="row" id="row">
+
+                <div class="col s4 ">
+                    <img src="{{this.profilpic}}" alt="" class=" circle responsive-img">
+                </div>
+                <div class="col s8">
+
+                    <h5>{{this.givenName}} {{this.familyName}}</h5>
+                </div>
+
+            </div>
+        </a>
+
+
+
+
+
+
+
+
+
 
     </div>
+    {{/each}}
 
-
-</div> {{/each}}
+</div>
+</div>

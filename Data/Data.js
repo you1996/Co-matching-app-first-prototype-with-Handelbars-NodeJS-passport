@@ -1,0 +1,58 @@
+const Data = [
+  {
+    name: "Moez",
+    intersts: [
+      "Aramco",
+      "Jack Welch",
+      "Tony Robbins",
+      "Baker McKenzie",
+      "European Entrepreneurship & Innovation @ Silicon Valley",
+      "Ericsson",
+      "Architecture",
+      "Réseautage",
+      "Fusions et acquisitions",
+      "Ingénierie",
+    ],
+    languages: ["FR", "EN", "ESP", "AR"],
+    university: ["National School of Engineers ENIG-TUNISIA"],
+  },
+  {
+    name: "Youssri",
+    intersts: [
+      "health care",
+      "computer Science",
+      "constructions",
+      "web developement",
+    ],
+    language: ["FR", "EN", "ESP"],
+    university: ["enicarthage"],
+  },
+  {
+    name: "Houssam",
+
+    intersts: [
+      "Software & Technology Professionals",
+      "Managers",
+      "HR ",
+      "Recruiters",
+      "Blockchain",
+      "Investors (BIG)",
+      "Career Hub",
+      "Startups",
+      "Financing",
+      "Blockchain & Jobs",
+      "Field Service Engineer Jobs",
+      "PwC",
+      "Bill Gates",
+      "Microsoft",
+      "Networking",
+      "Team Building",
+      "Public Speaking",
+      "Business development",
+      "Build Rapport",
+    ],
+    languages: ["FR", "EN", "ESP", "AR"],
+    university: ["Biomedicale"],
+  },
+];
+module.exports = Data;

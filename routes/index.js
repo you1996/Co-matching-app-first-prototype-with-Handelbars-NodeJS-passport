@@ -16,40 +16,38 @@ router.get("/", ensureGuest, (req, res) => {
 // @desc    Dashboard
 // @route   GET /dashboard
 router.get("/dashboard", ensureAuth, async (req, res) => {
-  try {
-    const stories = await Story.find({ user: req.user._id })
-      .sort({ createdAt: "desc" })
-      .lean();
+  var matches = [];
 
-    const matches = [];
-    matches.push(
-      await User.findById(req.user.matchingList[0].user_id)
+  const stories = await Story.find({ user: req.user._id })
+    .sort({ createdAt: "desc" })
+    .lean();
 
-        .sort({
-          score: "desc",
-        })
-        .lean()
-    );
-    //req.user.matchingList.sort({ score: "desc" }).forEach((element) => {
+  var list = Object.keys(req.user.matchingList);
+  const run = async () => {
+    for (const liste of list) {
+      let user = await User.findOne({ linkedinId: liste }).lean();
+      await matches.push(user);
+      return matches;
+    }
+  };
+  matches = await run();
 
-    // });
-    console.log(req.user.matchingList.user_id);
-    console.log(matches);
+  //console.log(req.user.matchingList.user_id);
 
-    res.render("dashboard", {
-      profilpic: req.user.profilpic,
-      country: req.user.country,
-      email: req.user.email,
-      givenName: req.user.givenName,
-      familyName: req.user.familyName,
-      matchingList: req.user.matchingList,
-      stories,
-      matches,
-    });
-  } catch (err) {
-    console.error(err);
-    res.render("error/500");
-  }
+  res.render("dashboard", {
+    profilpic: req.user.profilpic,
+    country: req.user.country,
+    email: req.user.email,
+    givenName: req.user.givenName,
+    familyName: req.user.familyName,
+    matchingList: req.user.matchingList,
+    stories,
+    matches,
+  });
+  // } catch (err) {
+  //   console.error(err);
+  //   res.render("error/500");
+  // }
 });
 
 module.exports = router;
