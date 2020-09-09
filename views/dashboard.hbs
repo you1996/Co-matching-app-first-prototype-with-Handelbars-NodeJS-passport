@@ -145,38 +145,22 @@
     height:100vh;">
 
 
-        {{#each  matches }}
+        {{#each matches}}
 
-
-
-
-
-
-        <a href="/stories/user/{{this._id}}">
-            <div class="row" id="row">
-
+        <div class="row" id="row">
+            <a href="/stories/user/{{_id}}">
                 <div class="col s4 ">
-                    <img src="{{this.profilpic}}" alt="" class=" circle responsive-img">
+                    <img src="{{profilpic}}" alt="" class=" circle responsive-img">
                 </div>
                 <div class="col s8">
 
-                    <h5>{{this.givenName}} {{this.familyName}}</h5>
+                    <h5>{{givenName}} {{familyName}}</h5>
                 </div>
-
-            </div>
-        </a>
-
-
-
-
-
-
-
-
-
-
+            </a>
+        </div>
+        {{/each}}
     </div>
-    {{/each}}
+
 
 </div>
 </div>

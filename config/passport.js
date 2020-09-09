@@ -59,7 +59,7 @@ module.exports = function (passport) {
 
           allUsers.forEach((element) => {
             if (element.linkedinId != profile.id) {
-              matching[element.linkedinId] = scoring(info, element.lean());
+              matching[element.linkedinId] = scoring(info, element);
             }
           });
 

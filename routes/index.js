@@ -17,20 +17,22 @@ router.get("/", ensureGuest, (req, res) => {
 // @route   GET /dashboard
 router.get("/dashboard", ensureAuth, async (req, res) => {
   var matches = [];
-
+  var list = [];
   const stories = await Story.find({ user: req.user._id })
     .sort({ createdAt: "desc" })
     .lean();
 
-  // var list = await Object.keys(req.user.matchingList);
-  // const run = async () => {
-  //   for (const liste of list) {
-  //     let user = await User.findOne({ linkedinId: liste }).lean();
-  //     await matches.push(user);
-  //     return matches;
-  //   }
-  // };
-  // matches = await run();
+  list = await Object.keys(req.user.matchingList);
+  const run = async () => {
+    for (const liste of list) {
+      let user = await User.findOne({ linkedinId: liste }).lean();
+      await matches.push(user);
+    }
+    return matches;
+  };
+  matches = await run();
+  console.log(matches);
+  console.log(list);
 
   //console.log(req.user.matchingList.user_id);
 
