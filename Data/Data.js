@@ -54,5 +54,32 @@ const Data = [
     languages: ["FR", "EN", "ESP", "AR"],
     university: ["Biomedicale"],
   },
+  {
+    name: "Atef",
+
+    intersts: [
+      "Software & Technology Professionals",
+      "Managers",
+      "HR ",
+      "Recruiters",
+      "Blockchain",
+      "Investors (BIG)",
+      "Career Hub",
+      "Startups",
+      "Financing",
+      "Blockchain & Jobs",
+      "Field Service Engineer Jobs",
+      "PwC",
+      "Bill Gates",
+      "Microsoft",
+      "Networking",
+      "Team Building",
+      "Public Speaking",
+      "Business development",
+      "Build Rapport",
+    ],
+    languages: ["FR", "EN", "ESP", "AR"],
+    university: ["Biomedicale"],
+  },
 ];
 module.exports = Data;
