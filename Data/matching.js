@@ -5,8 +5,8 @@ var scoring = function scoring(mainUser, user) {
     3
   );
   let scoreLanguage = CalculSectionScore(
-    mainUser.language,
-    user.informations.language,
+    mainUser.languages,
+    user.informations.languages,
     1
   );
   let scoreUniversity = CalculSectionScore(
