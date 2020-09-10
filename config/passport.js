@@ -28,7 +28,10 @@ module.exports = function (passport) {
           var matching = new Object();
 
           allUsers.forEach((element) => {
-            if (element.linkedinId != profile.id) {
+            if (
+              element.linkedinId != profile.id &&
+              User.countDocuments() !== 0
+            ) {
               matching[element.linkedinId] = scoring(
                 existingUser.informations,
                 element
@@ -58,11 +61,19 @@ module.exports = function (passport) {
           var matching = new Object();
 
           allUsers.forEach((element) => {
-            if (element.linkedinId != profile.id) {
+            if (
+              element.linkedinId != profile.id &&
+              User.estimatedDocumentCount() !== 0
+            ) {
               matching[element.linkedinId] = scoring(info, element);
             }
           });
-
+          if (Object.entries(matching).length === 0) {
+            matching[profile.id] = 1000;
+          }
+          if (User.countDocuments() === 0) {
+            matching[profile.linkedinId] = scoring(info, info);
+          }
           const user = await new User({
             linkedinId: profile.id,
             matchingList: matching,
