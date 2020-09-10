@@ -24,7 +24,7 @@ const Data = [
       "constructions",
       "web developement",
     ],
-    language: ["FR", "EN", "ESP"],
+    languages: ["FR", "EN", "ESP"],
     university: ["enicarthage"],
   },
   {
