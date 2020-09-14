@@ -22,6 +22,7 @@ function ContributeData(user, DataDocument) {
     DataDocument.forEach((UserData) => {
       if (UserData.name.toUpperCase() === user.toUpperCase()) {
         contributedData = UserData;
+        console.log(contributedData);
       }
     });
   } catch (error) {
