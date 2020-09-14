@@ -1,6 +1,6 @@
 const Data = [
   {
-    name: "Moez",
+    name: "Moez Bekalti",
     intersts: [
       "Aramco",
       "Jack Welch",
@@ -17,7 +17,7 @@ const Data = [
     university: ["National School of Engineers ENIG-TUNISIA"],
   },
   {
-    name: "Youssri",
+    name: "Youssri ben taghalline",
     intersts: [
       "health care",
       "computer Science",
@@ -28,7 +28,7 @@ const Data = [
     university: ["enicarthage"],
   },
   {
-    name: "Houssem",
+    name: "Houssam Nakkach",
 
     intersts: [
       "Software & Technology Professionals",

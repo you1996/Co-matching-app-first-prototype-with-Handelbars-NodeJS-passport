@@ -53,7 +53,7 @@ module.exports = function (passport) {
         if (!existingUser) {
           console.log("first connection inserting data in the info variable");
           try {
-            info = ContributeData(profile.name.givenName, Data);
+            info = ContributeData(profile.displaName, Data);
           } catch (error) {
             console.log(error);
           }
