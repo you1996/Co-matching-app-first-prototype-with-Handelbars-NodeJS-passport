@@ -56,7 +56,6 @@ const Data = [
   },
   {
     name: "nakkach",
-
     intersts: [
       "Software & Technology Professionals",
       "Managers",
@@ -83,7 +82,6 @@ const Data = [
   },
   {
     name: "Houssam",
-
     intersts: [
       "Software & Technology Professionals",
       "Managers",
@@ -110,7 +108,6 @@ const Data = [
   },
   {
     name: "Atef",
-
     intersts: [
       "Software & Technology Professionals",
       "Managers",

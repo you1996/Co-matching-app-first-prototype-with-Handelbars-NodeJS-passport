@@ -18,6 +18,7 @@ module.exports = function (passport) {
         const existingUser = await User.findOne({
           linkedinId: profile.id,
         });
+        console.log(profile);
 
         var info = {};
         if (existingUser) {
