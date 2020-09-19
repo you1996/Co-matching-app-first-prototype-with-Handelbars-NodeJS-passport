@@ -28,7 +28,7 @@ const Data = [
     university: ["enicarthage"],
   },
   {
-    name: "Houssam Nakkach",
+    name: "HOUSSAM  NAKKACH",
 
     intersts: [
       "Software & Technology Professionals",
@@ -54,32 +54,7 @@ const Data = [
     languages: ["FR", "EN", "ESP", "AR"],
     university: ["Biomedicale"],
   },
-  {
-    name: "nakkach",
-    intersts: [
-      "Software & Technology Professionals",
-      "Managers",
-      "HR ",
-      "Recruiters",
-      "Blockchain",
-      "Investors (BIG)",
-      "Career Hub",
-      "Startups",
-      "Financing",
-      "Blockchain & Jobs",
-      "Field Service Engineer Jobs",
-      "PwC",
-      "Bill Gates",
-      "Microsoft",
-      "Networking",
-      "Team Building",
-      "Public Speaking",
-      "Business development",
-      "Build Rapport",
-    ],
-    languages: ["FR", "EN", "ESP", "AR"],
-    university: ["Biomedicale"],
-  },
+
   {
     name: "mohamed zayèt",
     intersts: [
