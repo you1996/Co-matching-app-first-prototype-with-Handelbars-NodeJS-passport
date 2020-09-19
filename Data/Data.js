@@ -1,6 +1,6 @@
 const Data = [
   {
-    name: "Moez Bekalti",
+    name: "MOEZ BEKALTI",
     intersts: [
       "Aramco",
       "Jack Welch",
