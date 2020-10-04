@@ -23,6 +23,9 @@ router.get("/dashboard", ensureAuth, async (req, res) => {
     .lean();
 
   list = req.user.matchingList;
+  list.sort(function (a, b) {
+    return b.score - a.score;
+  });
   //query = await Object.values(req.user.matchingList);
   const run = async () => {
     for (let index = 0; index < list.length; index++) {

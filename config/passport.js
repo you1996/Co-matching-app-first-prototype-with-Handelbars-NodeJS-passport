@@ -89,9 +89,7 @@ module.exports = function (passport) {
             }
             delete matching;
           });
-          list.sort(function (a, b) {
-            return a.score - b.score;
-          });
+
           // if (Object.entries(matching).length === 0) {
           //   matching[profile.id] = 1000;
           // }
