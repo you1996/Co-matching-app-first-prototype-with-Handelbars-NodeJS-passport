@@ -4,6 +4,7 @@ const User = require("../models/User");
 var { scoring, ContributeData } = require("../Data/matching.js");
 const Data = require("../Data/Data.js");
 const { forEach } = require("../Data/Data.js");
+
 module.exports = function (passport) {
   passport.use(
     new LinkedInStrategy(
@@ -18,7 +19,6 @@ module.exports = function (passport) {
         const existingUser = await User.findOne({
           linkedinId: profile.id,
         });
-        console.log(profile);
 
         var info = {};
         if (existingUser) {
@@ -26,23 +26,37 @@ module.exports = function (passport) {
             "processing the matching for EXISTING USERS to update the matchinglist "
           );
           const allUsers = await User.find({}, function (err, docs) {});
-          var matching = new Object();
+          const CurrentUser = await User.findOne(
+            { linkedinId: profile.id },
+            function (err, docs) {}
+          );
+          var matching = new Object({ _id: false });
+
+          var list = [];
 
           allUsers.forEach((element) => {
+            var matching = new Object();
             if (
               element.linkedinId != profile.id &&
-              User.countDocuments() !== 0
+              User.estimatedDocumentCount() !== 0
             ) {
-              matching[element.linkedinId] = scoring(
-                existingUser.informations,
-                element
-              );
+              matching.id = element.linkedinId;
+              matching.score = scoring(CurrentUser.informations, element);
+              list.push(matching);
             }
+            delete matching;
+          });
+          list.sort(function (a, b) {
+            return a.score - b.score;
           });
           let query = { linkedinId: profile.id };
           User.updateOne(
             query,
-            { $set: { matchingList: matching } },
+            {
+              $set: {
+                matchingList: list,
+              },
+            },
             { upsert: true }
           ).then((result, err) => {
             return "ok";
@@ -57,27 +71,36 @@ module.exports = function (passport) {
           } catch (error) {
             console.log(error);
           }
+          console.log(info);
           console.log("processing the matching and append users in a list");
           const allUsers = await User.find({}, function (err, docs) {});
-          var matching = new Object();
+
+          var list = [];
 
           allUsers.forEach((element) => {
+            var matching = new Object();
             if (
               element.linkedinId != profile.id &&
               User.estimatedDocumentCount() !== 0
             ) {
-              matching[element.linkedinId] = scoring(info, element);
+              matching.id = element.linkedinId;
+              matching.score = scoring(info, element);
+              list.push(matching);
             }
+            delete matching;
           });
-          if (Object.entries(matching).length === 0) {
-            matching[profile.id] = 1000;
-          }
+          list.sort(function (a, b) {
+            return a.score - b.score;
+          });
+          // if (Object.entries(matching).length === 0) {
+          //   matching[profile.id] = 1000;
+          // }
           if (User.countDocuments() === 0) {
             matching[profile.linkedinId] = scoring(info, info);
           }
           const user = await new User({
             linkedinId: profile.id,
-            matchingList: matching,
+            matchingList: list,
             givenName: profile.name.givenName,
             familyName: profile.name.familyName,
             email: profile.emails[0].value,

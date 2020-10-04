@@ -14,8 +14,24 @@ var scoring = function scoring(mainUser, user) {
     user.informations.university,
     1
   );
-  return scoreIntersts + scoreUniversity + scoreLanguage;
+  let Calcul_Percent = CalculPercent(
+    mainUser.intersts,
+    mainUser.languages,
+    mainUser.university
+  );
+  return (
+    ((scoreIntersts + scoreUniversity + scoreLanguage) / Calcul_Percent) * 100
+  );
 };
+function CalculPercent(intersts, languages, university) {
+  let length_intersts = 0;
+  let length_languages = 0;
+  let length_university = 0;
+  length_intersts = intersts.length * 3;
+  length_languages = languages.length;
+  length_university = university.length;
+  return length_intersts + length_languages + length_university;
+}
 function ContributeData(user, DataDocument) {
   var contributedData = {};
   try {

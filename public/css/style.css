@@ -7,6 +7,107 @@ html {
   background-size: 100% 100%;
 }
 
+.post {
+  height: auto;
+  margin: 10px 20px;
+  overflow: hidden;
+  padding: 10px;
+  background-color: white;
+  color: rgb(90, 141, 117);
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+}
+
+.post__username {
+  margin: 5px 0 20px 0;
+}
+
+.post__body {
+  margin: 10px 0;
+}
+
+.post__date {
+  color: grey;
+}
+
+.card-container {
+  background-color: rgb(255, 255, 255);
+  opacity: 0.8;
+  border-radius: 5px;
+
+  color: rgb(90, 141, 117);
+  margin-right: 5px;
+  position: relative;
+  margin-top: 30px;
+  width: auto;
+  padding-bottom: 2px;
+  opacity: 1;
+  text-align: center;
+  margin-left: 5px;
+}
+.col .s8 .card-containerr {
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 5px;
+  border: solid 3px;
+
+  color: rgb(90, 141, 117);
+  margin-right: 5px;
+  position: relative;
+  margin-top: 30px;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 2px;
+  opacity: 0.95;
+  text-align: center;
+  margin-left: 5px;
+  right: 20%;
+  left: 50%;
+  top: 10%;
+}
+
+.col .s8 h5 {
+  margin-top: 20px;
+}
+
+.col .s4 {
+  margin-top: 2px;
+}
+
+h5 {
+  color: rgb(90, 141, 117);
+  margin: 0px;
+  font-size: 21px;
+}
+
+#row {
+  text-align: center;
+  height: 94px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 3px;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+}
+
+.card-image {
+  border-radius: 5px;
+}
+
+.round {
+  border: 1px solid #12a80c;
+  border-radius: 50%;
+  padding: 7px;
+  margin-top: 10px;
+  max-width: 150px;
+}
+
 .card-container {
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
@@ -67,4 +168,47 @@ p {
   border-radius: 10px;
 
   background-color: #0a8a35;
+}
+
+#tooltip1 {
+  position: relative;
+}
+#tooltip1 span {
+  visibility: hidden;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 2s;
+  height: 5px;
+}
+#tooltip1:hover span {
+  visibility: visible;
+  opacity: 1;
+  position: fixed;
+  right: 50%;
+
+  top: 5%;
+}
+div {
+  cursor: default;
+}
+#col8span {
+  height: 20px;
+}
+.material-tooltip.backdrop {
+  background-color: #0fa340;
+}
+
+.material-tooltip {
+  background-color: #0fa340;
+}
+@-webkit-keyframes grow {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes grow {
+  from {
+    width: 0;
+  }
 }

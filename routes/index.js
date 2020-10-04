@@ -17,15 +17,17 @@ router.get("/", ensureGuest, (req, res) => {
 // @route   GET /dashboard
 router.get("/dashboard", ensureAuth, async (req, res) => {
   var matches = [];
-  var list = [];
+
   const stories = await Story.find({ user: req.user._id })
     .sort({ createdAt: "desc" })
     .lean();
 
-  list = await Object.keys(req.user.matchingList);
+  list = req.user.matchingList;
+  //query = await Object.values(req.user.matchingList);
   const run = async () => {
-    for (const liste of list) {
-      let user = await User.findOne({ linkedinId: liste }).lean();
+    for (let index = 0; index < list.length; index++) {
+      let user = await User.findOne({ linkedinId: list[index].id }).lean();
+      user.score = list[index].score;
       await matches.push(user);
     }
     return matches;
@@ -43,6 +45,7 @@ router.get("/dashboard", ensureAuth, async (req, res) => {
     givenName: req.user.givenName,
     familyName: req.user.familyName,
     matchingList: req.user.matchingList,
+    informations: req.user.informations,
     stories,
     matches,
   });

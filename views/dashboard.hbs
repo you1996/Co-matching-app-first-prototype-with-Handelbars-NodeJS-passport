@@ -1,93 +1,3 @@
-<style>
-    * {
-        color: rgb(90, 141, 117);
-    }
-
-    .post {
-
-        height: auto;
-        margin: 10px 20px;
-        overflow: hidden;
-        padding: 10px;
-        background-color: white;
-        color: rgb(90, 141, 117);
-        border-radius: 5px;
-        -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
-        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
-    }
-
-    .post__username {
-        margin: 5px 0 20px 0;
-    }
-
-    .post__body {
-        margin: 10px 0;
-
-    }
-
-    .post__date {
-        color: grey;
-    }
-
-    .card-container {
-        background-color: rgb(255, 255, 255);
-        opacity: 0.8;
-        border-radius: 5px;
-
-        color: rgb(90, 141, 117);
-        margin-right: 5px;
-        position: relative;
-        margin-top: 30px;
-        width: auto;
-
-        opacity: 1;
-        text-align: center;
-        margin-left: 5px;
-    }
-
-    .col .s8 {
-        margin: 0px;
-    }
-
-    .col .s4 {
-        margin-top: 5px;
-    }
-
-    h5 {
-        color: rgb(90, 141, 117);
-        margin: 0px;
-        font-size: 21px;
-    }
-
-    #row {
-        height: 94px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 3px;
-        background-color: white;
-        color: black;
-        border-radius: 5px;
-        -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
-        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
-    }
-
-    .card-image {
-        border-radius: 5px;
-    }
-
-
-
-    .round {
-        border: 1px solid #12a80c;
-        border-radius: 50%;
-        padding: 7px;
-        margin-top: 10px;
-        max-width: 150px;
-    }
-</style>
 <div class="row">
 
     <div class="col s12 m6 l3">
@@ -99,6 +9,13 @@
 
             <h6> <i class="fa fa-fw fa-at"></i>{{email}}</h6>
             <p>{{country}}</p>
+            <h4>Intersted in</h4>
+            <h6>{{informations.intersts}}</h6>
+            <h4>Speaks</h4>
+            <h6>{{informations.languages}}</h6>
+            <h4>Studied at</h4>
+            <h6>{{informations.university}}</h6>
+
         </div>
     </div>
     <div class="col s12 m6 l6 ">
@@ -147,17 +64,49 @@
 
         {{#each matches}}
 
+
         <div class="row" id="row">
-            <a href="/stories/user/{{_id}}">
+            <a id="tooltip1" href="/stories/user/{{_id}}">
+
                 <div class="col s4 ">
                     <img src="{{profilpic}}" alt="" class=" circle responsive-img">
                 </div>
-                <div class="col s8">
+                <div id="col8span" class="col s8">
 
                     <h5>{{givenName}} {{familyName}}</h5>
+                    <small>{{{editProg score }}}</small>
+
+
+                    <span class="col s6">
+                        <div class="col s12">
+                            <div class="card-containerr">
+                                <div class="row">
+                                    <img class="round" src="{{profilpic}}" />
+
+
+                                    <h6> <i class="fa fa-fw fa-user"></i>{{givenName}} {{familyName}}</h6>
+
+                                    <h6> <i class="fa fa-fw fa-at"></i>{{email}}</h6>
+                                    <p>{{country}}</p>
+                                    <div class="col s8">
+                                        <h4>Intersted in</h4>
+                                        <h6>{{informations.intersts}}</h6>
+                                    </div>
+                                    <div class="col s4">
+                                        <h4>Speaks</h4>
+                                        <h6>{{informations.languages}}</h6>
+                                        <h4>Studied at</h4>
+                                        <h6>{{informations.university}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
                 </div>
             </a>
+
         </div>
+
         {{/each}}
     </div>
 
