@@ -28,7 +28,7 @@ const Data = [
     university: ["enicarthage"],
   },
   {
-    name: "HOUSSAM NAKKACH",
+    name: "HOUSSAM Naccache",
 
     intersts: [
       "Software & Technology Professionals",

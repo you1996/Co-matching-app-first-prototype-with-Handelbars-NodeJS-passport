@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const User = require("../models/User");
 var { scoring, ContributeData } = require("../Data/matching.js");
 const Data = require("../Data/Data.js");
-const { forEach } = require("../Data/Data.js");
 
 module.exports = function (passport) {
   passport.use(
