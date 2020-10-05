@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  matchingList: { type: Object },
+  matchingList: [{ _id: false, id: String, score: Number }],
   informations: { type: Object },
   givenName: {
     type: String,

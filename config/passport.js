@@ -33,6 +33,7 @@ module.exports = function (passport) {
           var matching = new Object({ _id: false });
 
           var list = [];
+          console.log(profile);
 
           allUsers.forEach((element) => {
             var matching = new Object();
