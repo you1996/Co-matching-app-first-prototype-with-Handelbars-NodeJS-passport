@@ -10,7 +10,8 @@ module.exports = function (passport) {
       {
         clientID: process.env.LINKEDIN_CLIENT_ID,
         clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
-        callbackURL: "/auth/linkedin/callback",
+        callbackURL:
+          "http://serene-hollows-88964.herokuapp.com/auth/linkedin/callback",
         scope: ["r_emailaddress", "r_liteprofile", "w_member_social"],
       },
 
